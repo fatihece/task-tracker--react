@@ -6,11 +6,23 @@ import { initialState } from "./store/initialState";
  
 
 function App() {
-  const[tasks, setTasks] = useState(initialState)
+  const [tasks, setTasks] = useState(initialState)
+
+  //Create a task
+
+  // Delete a task
+  const onDelete = (id) => {
+    setTasks(tasks.filter((task)=>(task.id !== id))) // set if the ids not equal
+  }
+
+  // Toggle Done
+
+  // Toggle Show Hide
+  
   return (
     <div className="container">
       <Header title={"Task Tracker"} />
-      <TaskList tasks={tasks}/>
+      <TaskList tasks={tasks} onDelete={onDelete }/>
     </div>
   );
 }
