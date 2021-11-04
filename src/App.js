@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import CreateTask from './components/CreateTask';
 import Header from './components/Header';
 import TaskList from './components/TaskList';
 import { initialState } from "./store/initialState";
@@ -8,7 +9,7 @@ import { initialState } from "./store/initialState";
 function App() {
   const [tasks, setTasks] = useState(initialState)
 
-  //Create a task
+  // Create a task
 
   // Delete a task
   const onDelete = (id) => {
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="container">
       <Header title={"Task Tracker"} />
+      <CreateTask />
       <TaskList tasks={tasks} onDelete={onDelete }/>
     </div>
   );
