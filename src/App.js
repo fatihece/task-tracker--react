@@ -20,6 +20,11 @@ function App() {
   }
 
   // Toggle Done
+  const toggleDone = (id) => {
+    setTasks(tasks.map((task) => (
+      task.id === id ? {...task, isDone: !task.isDone} : task
+    )))
+  }
 
   // Toggle Show Hide
   
@@ -27,7 +32,7 @@ function App() {
     <div className="container">
       <Header title={"Task Tracker"} />
       <CreateTask onCreate={onCreate}/>
-      <TaskList tasks={tasks} onDelete={onDelete }/>
+      <TaskList tasks={tasks} onDelete={onDelete} toggleDone={toggleDone}/>
     </div>
   );
 }
