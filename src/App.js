@@ -25,14 +25,19 @@ function App() {
       task.id === id ? {...task, isDone: !task.isDone} : task
     )))
   }
-
-  // Toggle Show Hide
   
   return (
     <div className="container">
       <Header title={"Task Tracker"} />
-      <CreateTask onCreate={onCreate}/>
-      <TaskList tasks={tasks} onDelete={onDelete} toggleDone={toggleDone}/>
+      <CreateTask onCreate={onCreate} />
+      {
+        tasks.length > 0 ? (
+          <TaskList tasks={tasks} onDelete={onDelete} toggleDone={toggleDone}/>
+        )
+          : (
+            <p>No Task to show</p>
+          )
+      }
     </div>
   );
 }
