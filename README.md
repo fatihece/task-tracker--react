@@ -11,3 +11,5 @@
 ## Author
 
 👤 **Fatih Yürek**
+
+- LinkedIn: [@fatihyurek](https://www.linkedin.com/in/fatihyurek/)
