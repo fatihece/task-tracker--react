@@ -5,6 +5,8 @@ import Header from './components/Header';
 import TaskList from './components/TaskList';
 import { initialState } from "./store/initialState";
 import { v4 as uuidv4 } from 'uuid';
+import { MainContext} from "./context/context";
+
 
 function App() {
   const [tasks, setTasks] = useState(initialState)
@@ -26,20 +28,26 @@ function App() {
     )))
   }
   
+  const data = {
+    tasks, setTasks, onCreate, onDelete, toggleDone
+  }
+
   return (
+    <MainContext.Provider value={data}>
     <div className="container">
-      <Header title={"Task Tracker"} />
-      <CreateTask onCreate={onCreate} />
-      
-      {
-        tasks.length > 0 ? (
-          <TaskList tasks={tasks} onDelete={onDelete} toggleDone={toggleDone}/>
-        )
-          : (
-            <p>No Task to show</p>
+        <Header/>
+        <CreateTask onCreate={onCreate} />
+        
+        {
+          tasks.length > 0 ? (
+            <TaskList tasks={tasks} onDelete={onDelete} toggleDone={toggleDone}/>
           )
-      }
-    </div>
+            : (
+              <p>No Task to show</p>
+            )
+        }
+        </div>
+      </MainContext.Provider>
   );
 }
 
