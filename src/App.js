@@ -40,7 +40,7 @@ function App() {
         
         {
           tasks.length > 0 ? (
-            <TaskList tasks={tasks} onDelete={onDelete} toggleDone={toggleDone}/>
+            <TaskList/>
           )
             : (
               <p>No Task to show</p>
