@@ -1,58 +1,56 @@
-import React from 'react'
+import React from "react";
 
-const CreateTask = ({onCreate}) => {
-    const[text, setText] = React.useState("")
-    const [day, setDay] = React.useState("")
+const CreateTask = ({ onCreate }) => {
+  const [text, setText] = React.useState("");
+  const [day, setDay] = React.useState("");
 
-    const handleTextChange = (e) => {
-        setText(e.target.value)
+  const handleTextChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleDayChange = (e) => {
+    setDay(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (text === "" || day === "") {
+      alert("Please fill the both fields!");
+    } else {
+      onCreate({ text, day, isDone: false });
+      setText("");
+      setDay("");
     }
-    
-    const handleDayChange = (e) => {
-        setDay(e.target.value)
-    }
-    
-    const onSubmit = (e) => {
-        e.preventDefault();
-        if (text==="" || day==="") {
-            alert("Please fill the both fields!")
-        } else {
-            onCreate({text, day, isDone:false})
-            setText("");
-            setDay("");
-        }
-        
-    }
-    return (
+  };
+  return (
+    <form className="add-form" onSubmit={onSubmit}>
+      <div className="form-control">
+        <label htmlFor="task">Task</label>
+        <input
+          id="task"
+          name="text"
+          type="text"
+          placeholder="Enter a task name"
+          // required
+          value={text}
+          onChange={handleTextChange}
+        />
+      </div>
+      <div className="form-control">
+        <label htmlFor="day">Day & Time</label>
+        <input
+          id="day"
+          name="day"
+          type="text"
+          placeholder="Enter a day and time"
+          // required
+          value={day}
+          onChange={handleDayChange}
+        />
+      </div>
+      <input type="submit" value="Save Task" className="btn btn-block" />
+    </form>
+  );
+};
 
-        <form className="add-form"  onSubmit={onSubmit}>
-        <div className="form-control">
-          <label htmlFor="task">Task</label>
-          <input
-            id="task"
-            name="text"
-            type="text"
-            placeholder="Enter a task name"
-            // required
-            value={text}
-            onChange={handleTextChange}
-          />
-        </div>
-        <div className="form-control">
-          <label htmlFor="day">Day & Time</label>
-          <input
-            id="day"
-            name="day"
-            type="text"
-            placeholder="Enter a day and time"
-            // required
-            value={day}
-            onChange={handleDayChange}
-          />
-        </div>
-        <input type="submit" value="Save Task" className="btn btn-block" />
-      </form>
-    )
-}
-
-export default CreateTask
+export default CreateTask;
